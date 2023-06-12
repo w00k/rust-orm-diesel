@@ -15,9 +15,18 @@ $ docker-compose up
 $ cargo install diesel_cli --no-default-features --features postgres
 ```
 
-3. Create the tables
+3. Create and insert data into data bases 
+
+
+3.1 Create a database connection.
 ```bash 
 $ diesel migration run --database-url postgres://postgres:postgres@localhost:5432/orm
 ```
+
+3.2 This is only for first run.
+``bash 
+diesel migration redo
+``
+
 
 ## 

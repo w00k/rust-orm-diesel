@@ -1,4 +1,4 @@
-use crate::{models::users::NewUser, query::my_query::new_user};
+use crate::{models::users::NewUser, query::my_query::{new_user, select_users, select_users_names, select_all_users_and_countries}};
 
 mod connection;
 mod models;
@@ -6,18 +6,32 @@ mod query;
 
 
 fn main() {
-    println!("Init!");
-    let mut _pool = connection::connection::establish_connection();
+    println!("Start!");
+    
 
     // insert data
+    let mut pool = connection::connection::establish_connection();
+
     let user_doo = NewUser {
         name: "John Doe",
         code_country: "US",
         number: &1000,
     };
 
-    new_user(_pool, user_doo);
+    new_user(pool, user_doo);
 
-    // end insert
+    // select all users 
+    pool = connection::connection::establish_connection();
 
+    select_users(pool);
+
+    // select all user names 
+    pool = connection::connection::establish_connection();
+
+    select_users_names(pool);
+
+    // inner_join
+    pool = connection::connection::establish_connection();
+
+    select_all_users_and_countries(pool);
 }
