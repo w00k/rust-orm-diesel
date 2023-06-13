@@ -42,4 +42,18 @@ impl User {
         return users.select(name).load::<String>(conn);
     }
 
+    pub fn update<'a>(
+        conn: &mut PgConnection,
+        my_user: User,
+    ) -> Result<User, diesel::result::Error> {
+        let update = diesel::update(users.filter(users::id.eq(my_user.id)))
+            .set((
+                name.eq(my_user.name),
+                code_country.eq(my_user.code_country),
+                number.eq(my_user.number),
+            ))
+            .get_result(conn);
+
+        return update;
+    }
 }

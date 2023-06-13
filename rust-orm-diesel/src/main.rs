@@ -1,6 +1,6 @@
 use crate::{
-    models::users::NewUser,
-    query::my_query::{new_user, select_all_users_and_countries, select_users, select_users_names, select_all_users_and_countries_to_struct},
+    models::users::{NewUser, User},
+    query::my_query::{new_user, select_all_users_and_countries, select_users, select_users_names, select_all_users_and_countries_to_struct, update_user},
 };
 
 mod connection;
@@ -39,5 +39,15 @@ fn main() {
     // inner_join
     pool = connection::connection::establish_connection();
     select_all_users_and_countries_to_struct(pool);
+
+    // update
+    let my_user = User {
+        id: 7,
+        name: "John Doe!!!!".to_owned(),
+        code_country: "US".to_owned(),
+        number: 50000,
+    };
+    pool = connection::connection::establish_connection();
+    update_user(pool, my_user);
     
 }

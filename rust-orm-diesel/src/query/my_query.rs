@@ -1,4 +1,4 @@
-use diesel::pg::PgConnection;
+use diesel::{pg::PgConnection};
 
 use crate::models::{
     countries::Country,
@@ -77,4 +77,17 @@ pub fn select_all_users_and_countries_to_struct(mut conn: PgConnection) {
         );
     }
     println!("END: select all users with countries to struct\n");
+}
+
+pub fn update_user(mut conn: PgConnection, my_user: User) {
+    println!("START: update user");
+    let update_row = User::update(&mut conn, my_user);
+
+    if update_row.is_ok() {
+        let user_updated = update_row.unwrap();
+        println!("update_user {} {} {} {}", user_updated.id, user_updated.name, user_updated.code_country, user_updated.number);
+        println!("END: update user\n");
+    } else {
+        println!("Error: update user {}\n", update_row.err().unwrap());
+    } 
 }
