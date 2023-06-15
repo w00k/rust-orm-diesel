@@ -91,3 +91,10 @@ pub fn update_user(mut conn: PgConnection, my_user: User) {
         println!("Error: update user {}\n", update_row.err().unwrap());
     } 
 }
+
+pub fn delete_user(mut conn: PgConnection, delete_id: i32) {
+    println!("START: delete user");
+    let rows_deleted = User::delete_user(&mut conn, delete_id);
+    println!("rows affected {}", rows_deleted);
+    println!("START: delete user");
+}

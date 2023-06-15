@@ -1,6 +1,6 @@
 use crate::{
     models::users::{NewUser, User},
-    query::my_query::{new_user, select_all_users_and_countries, select_users, select_users_names, select_all_users_and_countries_to_struct, update_user},
+    query::my_query::{new_user, select_all_users_and_countries, select_users, select_users_names, select_all_users_and_countries_to_struct, update_user, delete_user},
 };
 
 mod connection;
@@ -49,5 +49,10 @@ fn main() {
     };
     pool = connection::connection::establish_connection();
     update_user(pool, my_user);
+
+    // delete 
+    let delete_id = 8;
+    pool = connection::connection::establish_connection();
+    delete_user(pool, delete_id);
     
 }
