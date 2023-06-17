@@ -22,6 +22,7 @@ pub struct NewUser<'a> {
     pub number: &'a i32,
 }
 
+// implementation for User
 impl User {
     pub fn create_user<'a>(
         conn: &mut PgConnection,
@@ -57,8 +58,12 @@ impl User {
         return update;
     }
 
-    pub fn delete_user<'a>(conn: &mut PgConnection, delete_id: i32) -> u32 {
-        let _delete_row: u32 = diesel::delete(users.filter(users::id.eq(delete_id))).execute(conn).unwrap().try_into().unwrap();
-        return _delete_row
+    pub fn delete<'a>(conn: &mut PgConnection, delete_id: i32) -> u32 {
+        let _delete_row: u32 = diesel::delete(users.filter(users::id.eq(delete_id)))
+            .execute(conn)
+            .unwrap()
+            .try_into()
+            .unwrap();
+        return _delete_row;
     }
 }
