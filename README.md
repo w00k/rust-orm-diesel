@@ -28,9 +28,9 @@ $ diesel migration run --database-url postgres://postgres:postgres@localhost:543
 ```
 
 3.2 This is only for first run.
-``bash 
-diesel migration redo
-``
+```bash 
+$ diesel migration redo
+```
 
 
 ## 
