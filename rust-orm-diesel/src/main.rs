@@ -51,7 +51,7 @@ fn main() {
     update_user(pool, my_user);
 
     // delete 
-    let delete_id = 8;
+    let delete_id = 7;
     pool = connection::connection::establish_connection();
     delete_user(pool, delete_id);
     

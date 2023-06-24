@@ -14,6 +14,10 @@ $ docker-compose up
 ```bash 
 $ cargo install diesel_cli --no-default-features --features postgres
 ```
+You must install libpq
+```bash 
+$ apt install libpq-dev or brew install libpq
+```
 
 3. Create and insert data into data bases 
 
@@ -24,9 +28,9 @@ $ diesel migration run --database-url postgres://postgres:postgres@localhost:543
 ```
 
 3.2 This is only for first run.
-``bash 
-diesel migration redo
-``
+```bash 
+$ diesel migration redo
+```
 
 
 ## 
